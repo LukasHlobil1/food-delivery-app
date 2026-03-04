@@ -8,7 +8,7 @@ import { routes } from './app/app.routes';
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideIonicAngular(),
+    importProvidersFrom(IonicModule.forRoot({})),
     provideRouter(routes)
   ],
 });
