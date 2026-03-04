@@ -1,0 +1,144 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      <div class="logo-container">
+        <ion-icon name="restaurant-outline"></ion-icon>
+        <span>Doručeno</span>
+      </div>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <app-cart-icon></app-cart-icon>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar class="search-toolbar">
+    <ion-searchbar
+      placeholder="Hledat jídlo nebo restauraci..."
+      (ionInput)="search($event)"
+      (ionFocus)="onSearchFocus()"
+      animated
+      class="modern-search">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-content">
+  <!-- Loading skeleton -->
+  <div *ngIf="loading" class="skeleton-container">
+    <ion-skeleton-text animated style="width: 100%; height: 200px; border-radius: 16px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%; height: 150px; margin-top: 16px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%; height: 150px; margin-top: 16px;"></ion-skeleton-text>
+  </div>
+
+  <div *ngIf="!loading" class="content-container">
+    <!-- Hero sekce -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Hladoví?<br>Jsme tu pro vás!</h1>
+        <p>Objednejte si jídlo z oblíbených restaurací</p>
+        <ion-button expand="block" class="gradient-button" routerLink="/restaurants">
+          Začít objednávat
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Kategorie -->
+    <div class="categories-section">
+      <h2>Objevte kategorie</h2>
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let cat of categories" [routerLink]="['/restaurants']" [queryParams]="{category: cat.id}">
+          <div class="category-icon" [style.background]="cat.gradient">
+            <ion-icon [name]="cat.icon"></ion-icon>
+          </div>
+          <span>{{ cat.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Propagované restaurace -->
+    <div class="featured-section" *ngIf="promotedRestaurants.length > 0">
+      <div class="section-header">
+        <h2>Propagované restaurace</h2>
+        <ion-button fill="clear" routerLink="/restaurants">
+          Zobrazit vše
+          <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div class="restaurants-scroll">
+        <app-restaurant-card
+          *ngFor="let restaurant of promotedRestaurants"
+          [restaurant]="restaurant"
+          (click)="goToRestaurant(restaurant.id)">
+        </app-restaurant-card>
+      </div>
+    </div>
+
+    <!-- Populární jídla -->
+    <div class="popular-section" *ngIf="popularFoods.length > 0">
+      <div class="section-header">
+        <h2>Populární jídla</h2>
+        <ion-button fill="clear" routerLink="/restaurants">
+          Zobrazit vše
+          <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div class="foods-grid">
+        <app-food-card
+          *ngFor="let food of popularFoods"
+          [food]="food"
+          (addToCart)="addToCart($event)">
+        </app-food-card>
+      </div>
+    </div>
+
+    <!-- Akční nabídka -->
+    <div class="offer-banner">
+      <div class="offer-content">
+        <span class="offer-tag">LIMITOVANÁ NABÍDKA</span>
+        <h3>První objednávka<br>se slevou 20%</h3>
+        <ion-button fill="outline" routerLink="/restaurants">
+          Využít nabídku
+        </ion-button>
+      </div>
+      <div class="offer-image">
+        <img src="assets/images/offer-food.png" alt="Offer">
+      </div>
+    </div>
+
+    <!-- Jak to funguje -->
+    <div class="how-it-works">
+      <h2>Jak to funguje</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">
+            <ion-icon name="restaurant-outline"></ion-icon>
+          </div>
+          <h4>Vyberte jídlo</h4>
+          <p>Prohlédněte si nabídku restaurací</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <ion-icon name="cart-outline"></ion-icon>
+          </div>
+          <h4>Objednejte</h4>
+          <p>Přidejte do košíku a zaplaťte</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <ion-icon name="bicycle-outline"></ion-icon>
+          </div>
+          <h4>Doručíme</h4>
+          <p>Jídlo doručíme až k vám</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
