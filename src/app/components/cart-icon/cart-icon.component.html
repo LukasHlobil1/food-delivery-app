@@ -1,0 +1,6 @@
+<ion-button fill="clear" routerLink="/cart" class="cart-button">
+  <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+  <ion-badge *ngIf="itemCount > 0" color="danger" class="cart-badge">
+    {{ itemCount }}
+  </ion-badge>
+</ion-button>
