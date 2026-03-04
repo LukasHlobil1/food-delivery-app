@@ -1,0 +1,308 @@
+.home-content {
+  --background: #f8f9fa;
+
+  .skeleton-container {
+    padding: 16px;
+  }
+
+  .content-container {
+    padding-bottom: 32px;
+  }
+
+  // Hero sekce
+  .hero-section {
+    height: 300px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      max-width: 400px;
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+
+      p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 24px;
+      }
+
+      .gradient-button {
+        --background: white;
+        --color: #667eea;
+        --background-activated: #f0f0f0;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Kategorie
+  .categories-section {
+    padding: 24px 16px;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+      margin-bottom: 20px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+
+      .category-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+
+        .category-icon {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+          ion-icon {
+            font-size: 32px;
+            color: white;
+          }
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+          }
+        }
+
+        span {
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: var(--ion-color-dark);
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  // Sekce s hlavičkou
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 8px;
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+      margin: 0;
+    }
+
+    ion-button {
+      --color: var(--ion-color-primary);
+    }
+  }
+
+  // Scrollovatelné restaurace
+  .restaurants-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 16px 16px;
+    gap: 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    app-restaurant-card {
+      flex: 0 0 280px;
+    }
+  }
+
+  // Grid jídel
+  .foods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  // Akční banner
+  .offer-banner {
+    margin: 24px 16px;
+    background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+      animation: rotate 10s linear infinite;
+    }
+
+    .offer-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+
+      .offer-tag {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.9;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 8px 0 16px;
+        line-height: 1.2;
+      }
+
+      ion-button {
+        --border-color: white;
+        --color: white;
+      }
+    }
+
+    .offer-image {
+      position: relative;
+      z-index: 1;
+      width: 120px;
+      height: 120px;
+      animation: float 3s ease-in-out infinite;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  // Jak to funguje
+  .how-it-works {
+    padding: 24px 16px;
+    text-align: center;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+      margin-bottom: 32px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+
+      .step {
+        text-align: center;
+
+        .step-icon {
+          width: 80px;
+          height: 80px;
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 16px;
+          transition: transform 0.3s ease;
+
+          ion-icon {
+            font-size: 36px;
+            color: var(--ion-color-primary);
+          }
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        h4 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--ion-color-dark);
+          margin-bottom: 8px;
+        }
+
+        p {
+          font-size: 0.9rem;
+          color: var(--ion-color-medium);
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}
+
+// Animace
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// Responzivita
+@media (max-width: 480px) {
+  .categories-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+
+    .category-icon {
+      width: 60px !important;
+      height: 60px !important;
+
+      ion-icon {
+        font-size: 28px !important;
+      }
+    }
+  }
+
+  .steps {
+    gap: 8px !important;
+
+    .step-icon {
+      width: 60px !important;
+      height: 60px !important;
+
+      ion-icon {
+        font-size: 28px !important;
+      }
+    }
+  }
+}
