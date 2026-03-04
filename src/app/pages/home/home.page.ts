@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { FoodService } from '../../services/food.service';
 import { Food, Restaurant } from '../../models/food.model';
-import { FoodCardComponent } from '../../components/food-card/food-card.component';
-import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
-import { CartIconComponent } from '../../components/cart-icon/cart-icon.component';
-import { FormsModule } from '@angular/forms';
+
+// Dočasně bez komponent, dokud je nevytvoříme
+// import { FoodCardComponent } from '../../components/food-card/food-card.component';
+// import { RestaurantCardComponent } from '../../components/restaurant-card/restaurant-card.component';
+// import { CartIconComponent } from '../../components/cart-icon/cart-icon.component';
 
 @Component({
   selector: 'app-home',
@@ -19,9 +21,10 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     FormsModule,
-    FoodCardComponent,
-    RestaurantCardComponent,
-    CartIconComponent
+    // Dočasně zakomentováno
+    // FoodCardComponent,
+    // RestaurantCardComponent,
+    // CartIconComponent
   ]
 })
 export class HomePage implements OnInit {
@@ -60,7 +63,7 @@ export class HomePage implements OnInit {
   search(event: any) {
     const query = event.target.value;
     if (query && query.trim() !== '') {
-      // Implement search
+      console.log('Searching for:', query);
     }
   }
 
@@ -69,7 +72,7 @@ export class HomePage implements OnInit {
   }
 
   goToRestaurant(restaurantId: string) {
-    // Navigate to restaurant detail
+    console.log('Navigate to restaurant:', restaurantId);
   }
 
   addToCart(food: Food) {
