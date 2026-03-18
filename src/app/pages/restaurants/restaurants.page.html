@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Restaurace</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="loading">Načítání...</div>
+  <div *ngIf="!loading">
+    <ion-list>
+      <ion-item *ngFor="let r of restaurants" [routerLink]="['/restaurant', r.id]">
+        <ion-thumbnail slot="start">
+          <img [src]="r.imageUrl">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ r.name }}</h2>
+          <p>{{ r.cuisine.join(', ') }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
